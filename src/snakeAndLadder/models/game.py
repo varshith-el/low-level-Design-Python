@@ -28,7 +28,7 @@ class Game:
     def initBoard(self):
         slSet = set()
         for i in range(self._numberOfSnakes):
-            
+
             while True:
                 snakeStart = random.randint(self._board._start, self._board._size)
                 snakeEnd = random.randint(self._board._start, self._board._size)
@@ -56,6 +56,7 @@ class Game:
         self._players.append(player)
 
     '''
+    #system rolls the dice
     def playGame(self):
         while True:
             player = self._players.popleft()
@@ -76,6 +77,7 @@ class Game:
                 break
     '''
 
+    #users roll dice
     def playGame(self):
         while True:
             player = self._players.popleft()
