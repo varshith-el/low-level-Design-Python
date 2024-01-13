@@ -1,0 +1,29 @@
+|-----------------|       |-----------------|
+|   <<interface>> |       |   <<interface>> |
+|    Subject      |       |    Observer     |
+|-----------------|       |-----------------|
+| +attach(o:Observer)     |+update(s:Subject) 
+| +detach(o:Observer)     |-----------------|
+| +notify()               |                 |
+|-----------------|-----> |-----------------|
+|                 |       |                 |
+|                 |       |                 |
+|                 |       |                 |
+|                 |       |                 |
+|                 |       |                 |
+|-----------------|       |-----------------|
+        ^                         ^
+        |                         |
+        |                         |
+|-----------------|       |-----------------|
+|  ConcreteSubject|       | ConcreteObserver|
+|-----------------|       |-----------------|
+| -state          |       | -observerState  |
+|-----------------|       |-----------------|
+| +getState()     |       | +update(s:Subject) 
+| +setState(state)|       |-----------------|
+| +notify()       |
+|-----------------|
+
+
+we can also pass Subject(Observable) in the Concerete observer construction and call the get_data/getState.
