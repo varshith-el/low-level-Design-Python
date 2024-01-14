@@ -1,4 +1,5 @@
-##**arithmetic_expression.py**
+#Implemented directly using the composite pattern.
+#arithmetic_expression.py
 
 from abc import ABC, abstractmethod
 
@@ -8,7 +9,7 @@ class ArithmeticExpression(ABC):
         pass
 
 
-##**expression.py**
+#expression.py
 
 class Expression(ArithmeticExpression):
     def __init__(self, left_expression, right_expression, operation):
@@ -30,7 +31,7 @@ class Expression(ArithmeticExpression):
         return value
 
 
-##**number.py**
+#number.py
 
 class Number(ArithmeticExpression):
     def __init__(self, value):
@@ -42,11 +43,11 @@ class Number(ArithmeticExpression):
 
 
 
-##**main.py**
+##main.py
 
-from arithmetic_expression import ArithmeticExpression
-from expression import Expression
-from number import Number
+#from arithmetic_expression import ArithmeticExpression
+#from expression import Expression
+#from number import Number
 
 def main():
     two = Number(2)
