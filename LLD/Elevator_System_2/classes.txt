@@ -1,0 +1,80 @@
+Classes:
+
+
+Building
+| - floors: Floor[]
+| - elevators: ElevatorController[]
+| - externalDispatcher: ExternalDispatcher
+| + addFloor(floor: Floor): void
+| + removeFloor(floor: Floor): void
+| + getFloors(): Floor[]
+
+ElevatorController
+| - elevatorCar: ElevatorCar
+| - requests: (int, Direction)[]
+| - lock: threading.Lock
+| - dispatchStrategy: DispatchStrategy
+| - internalButtons: InternalButtons
+| + submitExternalRequest(floor: int, direction: Direction): void
+| + submitInternalRequest(floor: int): void
+| + controlElevator(): void
+
+ElevatorCar
+| - id: int
+| - state: ElevatorState
+| - currentFloor: int
+| - direction: Direction
+| - door: ElevatorDoor
+| + moveElevator(direction: Direction, floor: int): void
+
+ElevatorDoor
+| + openDoor(): void
+| + closeDoor(): void
+
+InternalButtons
+| - controller: ElevatorController
+| + pressButton(floor: int): void
+
+ExternalButtons
+| - dispatcher: ExternalDispatcher
+| + pressButton(floor: int, direction: Direction): void
+
+DispatchStrategy (abstract)
+| + chooseElevator(elevators: ElevatorController[], floor: int, direction: Direction): ElevatorController
+
+NearestElevatorStrategy (inherits from DispatchStrategy)
+| + chooseElevator(elevators: ElevatorController[], floor: int, direction: Direction): ElevatorController
+
+EvenOddStrategy (inherits from DispatchStrategy)
+| + chooseElevator(elevators: ElevatorController[], floor: int, direction: Direction): ElevatorController
+
+ExternalDispatcher
+| - elevators: ElevatorController[]
+| - dispatchStrategy: DispatchStrategy
+| + submitExternalRequest(floor: int, direction: Direction): void
+
+Floor
+| - floorNumber: int
+| - externalButtons: ExternalButtons
+| + pressButton(direction: Direction): void
+
+
+
+
+Relations:
+
+Building has a one-to-many relationship with Floor and ElevatorController. This means a Building can have multiple Floor and ElevatorController instances. It also has a one-to-one relationship with ExternalDispatcher.
+
+ElevatorController has a one-to-one relationship with ElevatorCar, DispatchStrategy, and InternalButtons. This means an ElevatorController has one ElevatorCar, one DispatchStrategy, and one InternalButtons.
+
+ElevatorCar has a one-to-one relationship with ElevatorDoor. This means an ElevatorCar has one ElevatorDoor.
+
+InternalButtons has a one-to-one relationship with ElevatorController. This means InternalButtons is associated with one ElevatorController.
+
+ExternalButtons has a one-to-one relationship with ExternalDispatcher. This means ExternalButtons is associated with one ExternalDispatcher.
+
+DispatchStrategy is an abstract base class for NearestElevatorStrategy and EvenOddStrategy. This means both NearestElevatorStrategy and EvenOddStrategy inherit from DispatchStrategy.
+
+ExternalDispatcher has a one-to-many relationship with ElevatorController and a one-to-one relationship with DispatchStrategy. This means an ExternalDispatcher can be associated with multiple ElevatorController instances and one DispatchStrategy.
+
+Floor has a one-to-one relationship with ExternalButtons. This means a Floor is associated with one ExternalButtons.
