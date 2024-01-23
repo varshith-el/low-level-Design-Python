@@ -1,0 +1,107 @@
+- variables
++ methods
+
+
+Vehicle
+| - vehicleID: int
+| - vehicleNumber: int
+| - vehicleType: VehicleType
+| - companyName: str
+| - modelName: str
+| - kmDriven: int
+| - manufacturingDate: date
+| - average: int
+| - cc: int
+| - dailyRentalCost: int
+| - hourlyRentalCost: int
+| - noOfSeat: int
+| - status: Status
+
+Car (inherits from Vehicle)
+
+Bike (inherits from Vehicle)
+
+Status (Enum)
+| - ACTIVE
+| - INACTIVE
+
+VehicleType (Enum)
+| - CAR
+| - BIKE
+
+Bill
+| - reservation: Reservation
+| - totalBillAmount: double
+| - isBillPaid: bool
+| + computeBillAmount(): double
+
+Location
+| - pincode: int
+| - city: str
+| - state: str
+| - country: str
+
+Payment
+| + payBill(bill: Bill): void
+
+PaymentDetails
+| - paymentId: int
+| - amountPaid: int
+| - dateOfPayment: date
+| - isRefundable: bool
+| - paymentMode: PaymentMode
+
+PaymentMode (Enum)
+| - CASH
+| - ONLINE
+
+Reservation
+| - reservationId: int
+| - user: User
+| - vehicle: Vehicle
+| - bookingDate: date
+| - dateBookedFrom: date
+| - dateBookedTo: date
+| - fromTimeStamp: long
+| - toTimeStamp: long
+| - pickUpLocation: Location
+| - dropLocation: Location
+| - reservationType: ReservationType
+| - reservationStatus: ReservationStatus
+| - location: Location
+| + createReserve(user: User, vehicle: Vehicle): int
+
+ReservationStatus (Enum)
+| - SCHEDULED
+| - INPROGRESS
+| - COMPLETED
+| - CANCELLED
+
+ReservationType (Enum)
+| - HOURLY
+| - DAILY
+
+Store
+| - storeId: int
+| - inventoryManagement: VehicleInventoryManagement
+| - storeLocation: Location
+| - reservations: Reservation[]
+| + getVehicles(vehicleType: VehicleType): Vehicle[]
+| + setVehicles(vehicles: Vehicle[]): void
+| + createReservation(vehicle: Vehicle, user: User): Reservation
+| + completeReservation(reservationID: int): bool
+
+User
+| - userId: int
+| - userName: int
+| - drivingLicense: int
+
+VehicleInventoryManagement
+| - vehicles: Vehicle[]
+| + getVehicles(): Vehicle[]
+| + setVehicles(vehicles: Vehicle[]): void
+
+VehicleRentalSystem
+| - storeList: Store[]
+| - userList: User[]
+| + getStore(location: Location): Store
