@@ -44,9 +44,9 @@ class Number(ArithmeticExpression):
 
 ##**main.py**
 
-from arithmetic_expression import ArithmeticExpression
-from expression import Expression
-from number import Number
+#from arithmetic_expression import ArithmeticExpression
+#from expression import Expression
+#from number import Number
 
 def main():
     two = Number(2)

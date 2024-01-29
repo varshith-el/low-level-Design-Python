@@ -248,3 +248,7 @@ class ExitGate:
 
     def remove_vehicle(self):
         self.parking_spot_manager_factory.get_parking_spot_manager(self.ticket.vehicle).remove_vehicle(self.ticket.vehicle)
+
+
+
+#Check for multi floor and multi gate design.
