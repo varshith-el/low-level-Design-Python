@@ -122,9 +122,9 @@ class ExternalDispatcher:
 
 class Building:
     def __init__(self, numFloors, numElevators, dispatchStrategy):
+        self.elevators = [ElevatorController(ElevatorCar(i), dispatchStrategy, numFloors) for i in range(numElevators)]
         self.externalDispatcher = ExternalDispatcher(self.elevators, dispatchStrategy)
         self.floors = [Floor(i, self.externalDispatcher) for i in range(numFloors)]
-        self.elevators = [ElevatorController(ElevatorCar(i), dispatchStrategy, numFloors) for i in range(numElevators)]
 
     def addFloor(self, floor):
         self.floors.append(floor)
