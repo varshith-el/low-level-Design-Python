@@ -1,8 +1,11 @@
+from abc import ABC, abstractmethod
 
+class FileSystem(ABC):
+    @abstractmethod
+    def ls(self):
+        pass
 
-##**directory.py**
-
-class Directory:
+class Directory(FileSystem):
     def __init__(self, name):
         self.directory_name = name
         self.file_system_list = []
@@ -15,24 +18,12 @@ class Directory:
         for file_system_obj in self.file_system_list:
             file_system_obj.ls()
 
-
-##**file.py**
-
-class File:
+class File(FileSystem):
     def __init__(self, name):
         self.file_name = name
 
     def ls(self):
         print(f"File name {self.file_name}")
-
-
-##filesystem.py
-from abc import ABC, abstractmethod
-
-class FileSystem(ABC):
-    @abstractmethod
-    def ls(self):
-        pass
 
 
 #**main.py**
